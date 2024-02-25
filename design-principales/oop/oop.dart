@@ -35,38 +35,67 @@ class Person {
   // a class can have fields (properties) and methods (functions)
 
   // attributes (fields) - properties
-  String name;
-  int age;
+  String _name; // private field ( access modifier _ )
+  int age; // public field
 
   // static field
   static int count = 0;
 
   // default constructor
-  Person({required this.name, required this.age}) {
+  Person(this._name, {required this.age}) {
     count++;
   }
 
+  // named constructor
+  Person.guest(this._name, {required this.age, required String role}) {
+    print("Guest: $role");
+    count++;
+  }
+
+  // Redirecting constructors
+  Person.MVP(String name, int age, String role) : this(name, age: age);
+
   // behavior (methods) - functions
   void sayHello() {
-    print('Hello, my name is $name');
+    print('Hello, my name is $_name');
   }
 
   void showAge() {
     print('I am $age years old');
+    _privateMethod();
+  }
+
+  // private method
+  void _privateMethod() {
+    print('This is a private method');
   }
 }
 
 void main() {
   // create an object of the Person class
   // on the creation it called on object
-  var person1 = Person(name: 'Alice', age: 25);
+  var person1 = Person('Alice', age: 25);
 
   // when we call the object it called an instance of the class
   person1.sayHello();
   person1.showAge();
 
   // create another object of the Person class
-  var person2 = Person(name: 'Bob', age: 30);
+  var person2 = Person('Bob', age: 30);
   person2.sayHello();
   person2.showAge();
+
+  // create another object of the Person class
+  var person3 = Person.guest('Charlie', age: 35, role: 'VIP');
+  person3.sayHello();
 }
+
+/* 
+Dart only have public and private members
+protected Members allow : 
+Accessing in the same class
+Accessing in other classes of the same package
+Accessing protected members of a class in its subclass in the same package
+Accessing another class in a different package
+Accessing in sub-class in a different package
+*/
