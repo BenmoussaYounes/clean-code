@@ -1,5 +1,4 @@
 /* Object Oriented Programming (OOP)
-
 OOP is a programming paradigm that uses objects and classes
 OOP focuses on the objects that interact with one another
 With OOP, we can model real-world entities as objects and classes in our code 
@@ -12,6 +11,7 @@ OOP is based on the following principles:
 
 class is a blueprint for creating objects
 - object is an instance of a class
+- a class is a template for objects
 - class members include fields (properties) and methods (functions)
 - fields are variables that hold data
 - methods are functions that perform actions
