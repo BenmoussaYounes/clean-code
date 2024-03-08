@@ -114,3 +114,60 @@ class C extends B {
     print('C');
   }
 }
+
+/*
+with extends we can archive only single inheritance 
+to archive multiple inheritance we can use mixin
+
+Mixins are a way of defining code that can be reused in multiple class hierarchies.
+They are intended to provide member implementations en masse.
+docs : https://dart.dev/language/mixins
+*/
+
+class Musician {
+  // ...
+}
+
+mixin MusicalPerformer on Musician {
+  // ...
+}
+
+class SingerDancer extends Musician with MusicalPerformer {
+  // ...
+}
+
+/*
+In the rare case where you need to define both a mixin and a class, you can use the mixin class declaration.
+Any restrictions that apply to classes or mixins also apply to mixin classes:
+
+Mixins can't have extends or with clauses, so neither can a mixin class.
+Classes can't have an on clause, so neither can a mixin class.
+*/
+
+abstract mixin class MusicianMaster {
+  // No 'on' clause, but an abstract method that other types must define if
+  // they want to use (mix in or extend) Musician:
+  void playInstrument(String instrumentName);
+
+  void playPiano() {
+    playInstrument('Piano');
+  }
+
+  void playFlute() {
+    playInstrument('Flute');
+  }
+}
+
+class Virtuoso with MusicianMaster {
+  // Use MusicianMaster as a mixin
+  void playInstrument(String instrumentName) {
+    print('Plays the $instrumentName beautifully');
+  }
+}
+
+class Novice extends MusicianMaster {
+  // Use MusicianMaster as a class
+  void playInstrument(String instrumentName) {
+    print('Plays the $instrumentName poorly');
+  }
+}
