@@ -6,6 +6,11 @@ Generics are used to create reusable components that can work with any data type
 */
 
 void main() {
+  // BAD
+  double doubleValue = eitherIntOrDoubleBAD(WhatToReturn.double) as double;
+  int intValue = eitherIntOrDoubleBAD(WhatToReturn.int) as int;
+
+  // GOOD
   print(doTypeMatch(4, 1.5));
   print(doTypeMatch(4, ''));
   print(doTypeMatch(4, 4));
@@ -14,6 +19,21 @@ void main() {
   int b = eitherIntOrdDouble();
 
   sum add = (num a, num b) => a + b;
+}
+
+// BAD
+
+enum WhatToReturn { int, double }
+
+num eitherIntOrDoubleBAD(WhatToReturn whatToReturn) {
+  switch (whatToReturn) {
+    case WhatToReturn.int:
+      print('This is an integer');
+      return 1;
+    case WhatToReturn.double:
+      print('This is a double');
+      return 1.0;
+  }
 }
 
 // Example 1: Generic Function
