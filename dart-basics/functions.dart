@@ -1,11 +1,11 @@
 void main() {
-  //  note
-  // function sum(int a, int b){ } a and b are parameters
-  // sum(5, 3); 5 and 3 are arguments
+  //?  note
+  //? function sum(int a, int b){ } a and b are parameters
+  //? sum(5, 3); 5 and 3 are arguments
 
-  // when a function is defined inside another function, it is called a nested function
-  // when a function is passed as an argument to another function, it is called a callback function
-  // when a function returns another function, it is called a closure
+  //? when a function is defined inside another function, it is called a nested function
+  //? when a function is passed as an argument to another function, it is called a callback function
+  //? when a function contains references to variables (it "closes over" those variables), it is called a closure
 
   // function with no parameters and no return value
   void greet() {
@@ -101,13 +101,42 @@ void main() {
     print(name);
   });
 
-  // closure
+  //? CLOSURE
+  //? In Dart, a closure is a special kind of box called a “function”.
+  //? You can put some toys (variables) inside the function
+  //? and when you use the function later, it will remember those toys.
+
+  //? Closure in JavaScript is a function that has access to the variables in the scope in which it was created
+  //? This means that a closure can remember and use variables from its outer scope, even after the outer scope is no longer accessible.
+  //? In Dart, a closure is a function object that has access to variables in its lexical scope, even if the function is used outside of its original scope.
+  // example 1
   Function makeAdder(int addBy) {
     return (int i) => i + addBy;
   }
 
   Function add2 = makeAdder(2);
   print(add2(3)); // 5
+
+  // example 2
+  Function makeMultiplier(int multiplyBy) {
+    return (int i) => i * multiplyBy;
+  }
+
+  Function multiplyBy3 = makeMultiplier(3);
+  print(multiplyBy3(3)); // 9
+
+  // example 3
+  Function makeGreet(String title) {
+    return (String name) => 'Hello $title $name';
+  }
+
+  Function greetMr = makeGreet('Mr.');
+  print(greetMr('Ali')); // Hello Mr. Ali
+
+  // example 4
+  var a = "A";
+  Function addA = (String b) => a + b;
+  print(addA("B")); // prints "AB"
 
   // function as a variable
   Function greetFunction2 = upperName;
