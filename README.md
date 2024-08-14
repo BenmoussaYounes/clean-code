@@ -15,7 +15,6 @@ This repository aims to help developers write clean, maintainable, and efficient
 
 ## Table of Contents
 
-- [Introduction](#introduction)
 - [Dart Basics](#dart-basics)
   - [Variables](#variables)
   - [Built-In Types](#built-in-types)
